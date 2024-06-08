@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using CurrencyConverter.Models;
+using CurrencyConverter.Services;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;
@@ -63,6 +65,12 @@ namespace CurrencyConverter
                         }
                     }
 
+                    XMLDataParser XmlParser = new XMLDataParser($"{xmlDowloadDir}\\25_05_2023.xml");
+                    List<CurrencyData> currencyDatas = XmlParser.LoadData();
+
+
+                    int i = 0;
+                    i++;
 
                 }
             }

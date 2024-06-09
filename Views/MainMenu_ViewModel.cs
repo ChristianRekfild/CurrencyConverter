@@ -64,17 +64,17 @@ namespace CurrencyConverter.Views
         #endregion
 
         #region Команды
-        /// <summary>Тестовая команда</summary>
+        /// <summary>Команда загрузки данных</summary>
         private ICommand _loadCommand;
 
-        /// <summary>Тестовая команда</summary>
+        /// <summary>Команда загрузки данных</summary>
         public ICommand LoadCommand => _loadCommand
             ??= new MyCommand(OnLoadCommandExecuted, CanLoadCommandExecute);
 
-        /// <summary>Проверка возможности выполнения - Тестовая команда</summary>
+        /// <summary>Проверка возможности выполнения - Команда загрузки данных</summary>
         private bool CanLoadCommandExecute(object p) => true;
 
-        /// <summary>Логика выполнения - Тестовая команда</summary>
+        /// <summary>Логика выполнения - Команда загрузки данных</summary>
         private async void OnLoadCommandExecuted(object p)
         {
             CurrencyData = await LoadData().ConfigureAwait(false);

@@ -56,12 +56,18 @@
 
                 <UniformGrid DockPanel.Dock="Top" Rows="2">
                     <Label Content="Курсы валют ЦБ на дату"/>
-                    <ListBox Height="150" ItemsSource="{Binding CurrencyData}" SelectionChanged="ListBox_SelectionChanged">
+                    <ListBox Height="150" ItemsSource="{Binding CurrencyData}">
                         <ListBox.ItemTemplate>
                             <DataTemplate DataType="m:CurrencyData">
                                 <DockPanel>
-                                    <!--<TextBlock DockPanel.Dock="Right" Text="{Binding Students.Count, StringFormat=({0})}"/>-->
-                                    <!--<TextBlock Text="{Binding CurrencyData}" DockPanel.Dock="Left"/>-->
+
+                                    <TextBlock>
+                                        <TextBlock Text="{Binding NumCode}"/>
+                                        <TextBlock Text="{Binding CharCode}"/>
+                                        <TextBlock Text="{Binding Nominal}"/>
+                                        <TextBlock Text="{Binding Value}"/>
+                                    </TextBlock>
+                                    
                                 </DockPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

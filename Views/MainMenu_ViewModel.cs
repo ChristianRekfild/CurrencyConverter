@@ -78,13 +78,14 @@ namespace CurrencyConverter.Views
         private async void OnLoadCommandExecuted(object p)
         {
             CurrencyData = await LoadData().ConfigureAwait(false);
-            int i = 0;
-            i++;
         }
         #endregion
 
 
-
+        /// <summary>
+        /// Загружает данные с сайта ЦБ на указанную дату
+        /// </summary>
+        /// <returns></returns>
         private async Task<List<CurrencyData>> LoadData()
         {
             string appDir = AppDomain.CurrentDomain.BaseDirectory;

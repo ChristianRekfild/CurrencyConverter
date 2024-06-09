@@ -61,6 +61,27 @@ namespace CurrencyConverter.Views
             get => _date;
             set => SetValue(ref _date, value);
         }
+
+        private List<string> _firstSelectedVal;
+        /// <summary>
+        /// Первая (верхняя) выбранная валюта
+        /// </summary>
+        public List<string> FirstSelectedVal
+        {
+            get => _firstSelectedVal;
+            set => SetValue(ref _firstSelectedVal, value);
+        }
+
+        private List<string> _secondSelectedVal;
+        /// <summary>
+        /// Вторая (нижняя) выбранная валютс
+        /// </summary>
+        public List<string> SecondSelectedVal
+        {
+            get => _secondSelectedVal;
+            set => SetValue(ref _secondSelectedVal, value);
+        }
+
         #endregion
 
         #region Команды
@@ -78,6 +99,9 @@ namespace CurrencyConverter.Views
         private async void OnLoadCommandExecuted(object p)
         {
             CurrencyData = await LoadData().ConfigureAwait(false);
+
+            FirstSelectedVal  = CurrencyData.Select(x => x.CharCode).ToList();
+            SecondSelectedVal = CurrencyData.Select(x => x.CharCode).ToList();
         }
         #endregion
 
@@ -88,6 +112,7 @@ namespace CurrencyConverter.Views
         /// <returns></returns>
         private async Task<List<CurrencyData>> LoadData()
         {
+            #region Команда загрузки данных
             string appDir = AppDomain.CurrentDomain.BaseDirectory;
             string xmlDowloadDir = $"{appDir}\\Downloads";
             if (!Directory.Exists(xmlDowloadDir))
@@ -125,7 +150,7 @@ namespace CurrencyConverter.Views
                     XMLDataParser XmlParser = new XMLDataParser($"{xmlDowloadDir}\\{Date.ToString("dd")}_{Date.ToString("MM")}_{Date.ToString("yyyy")}.xml");
                     currencyDatas = XmlParser.LoadData();
 
-                    
+
                     //int i = 0;
                     //i++;
 
@@ -133,6 +158,7 @@ namespace CurrencyConverter.Views
             }
             return currencyDatas;
 
+            #endregion
         }
 
     }

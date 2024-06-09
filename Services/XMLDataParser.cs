@@ -74,10 +74,10 @@ namespace CurrencyConverter.Services
                             currencyData.VunitRate = decimal.Parse(innerNode.InnerText);
                         }
 
-                        listCurrencyDatas.Add(currencyData);
+                        //listCurrencyDatas.Add(currencyData);
 
                     }
-
+                    listCurrencyDatas.Add(currencyData);
                 }
 
             }

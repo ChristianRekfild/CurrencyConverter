@@ -78,6 +78,8 @@ namespace CurrencyConverter.Views
         private async void OnLoadCommandExecuted(object p)
         {
             CurrencyData = await LoadData().ConfigureAwait(false);
+            int i = 0;
+            i++;
         }
         #endregion
 
@@ -90,7 +92,8 @@ namespace CurrencyConverter.Views
             if (!Directory.Exists(xmlDowloadDir))
                 Directory.CreateDirectory(xmlDowloadDir);
 
-            string url = "https://www.cbr.ru/scripts/XML_daily.asp?date_req=25/05/2023";
+            //string url = $"https://www.cbr.ru/scripts/XML_daily.asp?date_req=25/05/2023";
+            string url = $"https://www.cbr.ru/scripts/XML_daily.asp?date_req={Date.ToString("dd")}/{Date.ToString("MM")}/{Date.ToString("yyyy")}";
 
             List<CurrencyData> currencyDatas = null;
 
@@ -112,13 +115,13 @@ namespace CurrencyConverter.Views
 
                     if (string.IsNullOrWhiteSpace(responseContent) == false)
                     {
-                        using (StreamWriter writer = new StreamWriter($"{xmlDowloadDir}\\25_05_2023.xml", false, enc1251))
+                        using (StreamWriter writer = new StreamWriter($"{xmlDowloadDir}\\{Date.ToString("dd")}_{Date.ToString("MM")}_{Date.ToString("yyyy")}.xml", false, enc1251))
                         {
                             writer.Write(responseContent);
                         }
                     }
 
-                    XMLDataParser XmlParser = new XMLDataParser($"{xmlDowloadDir}\\25_05_2023.xml");
+                    XMLDataParser XmlParser = new XMLDataParser($"{xmlDowloadDir}\\{Date.ToString("dd")}_{Date.ToString("MM")}_{Date.ToString("yyyy")}.xml");
                     currencyDatas = XmlParser.LoadData();
 
                     

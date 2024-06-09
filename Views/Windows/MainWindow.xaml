@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:CurrencyConverter.Views"
         xmlns:local="clr-namespace:CurrencyConverter"
+        xmlns:m="clr-namespace:CurrencyConverter.Models"
         Title="{Binding Path=Title}"
         Height="450" Width="800">
     <Window.DataContext>
@@ -29,7 +30,18 @@
                 </UniformGrid>
 
                 <ListBox ItemsSource="{Binding CurrencyData}">
-                    
+                    <!--<Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>-->
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="m:CurrencyData">
+                            <DockPanel>
+                                <!--<TextBlock DockPanel.Dock="Right" Text="{Binding Students.Count, StringFormat=({0})}"/>-->
+                                <TextBlock Text="{Binding CharCode}"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
                 </ListBox>
             </DockPanel>
         </GroupBox>
@@ -44,8 +56,15 @@
 
                 <UniformGrid DockPanel.Dock="Top" Rows="2">
                     <Label Content="Курсы валют ЦБ на дату"/>
-                    <ListBox Height="150">
-
+                    <ListBox Height="150" ItemsSource="{Binding CurrencyData}" SelectionChanged="ListBox_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="m:CurrencyData">
+                                <DockPanel>
+                                    <!--<TextBlock DockPanel.Dock="Right" Text="{Binding Students.Count, StringFormat=({0})}"/>-->
+                                    <!--<TextBlock Text="{Binding CurrencyData}" DockPanel.Dock="Left"/>-->
+                                </DockPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
                     </ListBox>
                 </UniformGrid>
 

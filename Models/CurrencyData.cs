@@ -18,5 +18,9 @@ namespace CurrencyConverter.Models
 
         // По идее тут можно было бы ещё прописать надбавки за обмен, но такого в ТЗ не было =)
 
+        public override string ToString()
+        {
+            return $"{NumCode}{CharCode}{Nominal}{Value}";
+        }
     }
 }

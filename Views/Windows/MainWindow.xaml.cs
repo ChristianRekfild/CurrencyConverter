@@ -32,48 +32,48 @@ namespace CurrencyConverter
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            textbox_path.Text = AppDomain.CurrentDomain.BaseDirectory;
+            ////textbox_path.Text = AppDomain.CurrentDomain.BaseDirectory;
 
-            string appDir = AppDomain.CurrentDomain.BaseDirectory;
-            string xmlDowloadDir = $"{appDir}\\Downloads";
-            if (!Directory.Exists(xmlDowloadDir))
-                Directory.CreateDirectory(xmlDowloadDir);
+            //string appDir = AppDomain.CurrentDomain.BaseDirectory;
+            //string xmlDowloadDir = $"{appDir}\\Downloads";
+            //if (!Directory.Exists(xmlDowloadDir))
+            //    Directory.CreateDirectory(xmlDowloadDir);
 
-            string url = "https://www.cbr.ru/scripts/XML_daily.asp?date_req=25/05/2023";
+            //string url = "https://www.cbr.ru/scripts/XML_daily.asp?date_req=25/05/2023";
 
-            using (var client = new HttpClient())
-            {
-                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            //using (var client = new HttpClient())
+            //{
+            //    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-                client
-                    .DefaultRequestHeaders
-                    .Accept.Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Text.Xml));
-                client.Timeout = TimeSpan.FromSeconds(500);
-                var response = await client.GetAsync(url).ConfigureAwait(false);
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseContentBytes = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
+            //    client
+            //        .DefaultRequestHeaders
+            //        .Accept.Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Text.Xml));
+            //    client.Timeout = TimeSpan.FromSeconds(500);
+            //    var response = await client.GetAsync(url).ConfigureAwait(false);
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        var responseContentBytes = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
 
-                    var enc1251 = CodePagesEncodingProvider.Instance.GetEncoding("windows-1251");
-                    string responseContent = enc1251.GetString(responseContentBytes);
+            //        var enc1251 = CodePagesEncodingProvider.Instance.GetEncoding("windows-1251");
+            //        string responseContent = enc1251.GetString(responseContentBytes);
 
-                    if (string.IsNullOrWhiteSpace(responseContent) == false)
-                    {
-                        using (StreamWriter writer = new StreamWriter($"{xmlDowloadDir}\\25_05_2023.xml", false, enc1251))
-                        {
-                            writer.Write(responseContent);
-                        }
-                    }
+            //        if (string.IsNullOrWhiteSpace(responseContent) == false)
+            //        {
+            //            using (StreamWriter writer = new StreamWriter($"{xmlDowloadDir}\\25_05_2023.xml", false, enc1251))
+            //            {
+            //                writer.Write(responseContent);
+            //            }
+            //        }
 
-                    XMLDataParser XmlParser = new XMLDataParser($"{xmlDowloadDir}\\25_05_2023.xml");
-                    List<CurrencyData> currencyDatas = XmlParser.LoadData();
+            //        XMLDataParser XmlParser = new XMLDataParser($"{xmlDowloadDir}\\25_05_2023.xml");
+            //        List<CurrencyData> currencyDatas = XmlParser.LoadData();
 
 
-                    int i = 0;
-                    i++;
+            //        int i = 0;
+            //        i++;
 
-                }
-            }
+            //    }
+            //}
         }
     }
 }

@@ -82,7 +82,7 @@
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
                         <GroupBox Grid.Column="0">
-                            <ComboBox ItemsSource="{Binding FirstSelectedVal}" Width="100" HorizontalAlignment="Left"/>
+                            <ComboBox ItemsSource="{Binding FirstSelectedVal}" Width="100" HorizontalAlignment="Left" />
                         </GroupBox>
                         <GroupBox Grid.Column="1">
                             <TextBox></TextBox>
